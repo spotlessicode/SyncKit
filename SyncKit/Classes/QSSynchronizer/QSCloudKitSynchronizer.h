@@ -111,15 +111,21 @@ typedef NS_ENUM(NSInteger, QSCloudKitSynchronizeMode)
  *
  *  @param completion Block that will be called after subscription is created, with an optional error.
  */
+#if TARGET_OS_WATCH
+//---CKSubscription and CKNotificationInfo is not available on Watch OS
+#else
 - (void)subscribeForUpdateNotificationsWithCompletion:(void(^)(NSError *error))completion;
-
+#endif
 /**
  *  Delete existing subscription to stop receiving notifications.
  *
  *  @param completion Block that will be called after subscription is deleted, with an optional error.
  */
+#if TARGET_OS_WATCH
+//---CKSubscription and CKNotificationInfo is not available on Watch OS
+#else
 - (void)deleteSubscriptionWithCompletion:(void(^)(NSError *error))completion;
-
+#endif
 
 /**
  *  Returns identifier for a registered `CKSubscription` to track changes.
